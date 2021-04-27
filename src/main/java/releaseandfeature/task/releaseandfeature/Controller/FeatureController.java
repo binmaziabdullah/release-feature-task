@@ -15,26 +15,24 @@ public class FeatureController {
     private FeatureService featureService;
 
     @GetMapping
-    public List<Feature> getAllFeature(){
+    public List<Feature> getAllFeature() {
         return featureService.getAllFeatures();
     }
+
     @GetMapping("/{id}")
-    public Optional<Feature> getFeatureById(@PathVariable Long id){
+    public Optional<Feature> getFeatureById(@PathVariable Long id) {
         return featureService.getById(id);
     }
+
     @PostMapping
-    public String createFeature(@RequestBody Feature feature){
-        featureService.createFeature(feature);
-        return "Feature Created";
+    public Feature saveOrUpdate(@RequestBody Feature feature) {
+        return featureService.saveOrUpdate(feature);
     }
-    @PutMapping
-    public Feature updateFeature(@RequestBody Feature feature){
-        return featureService.updateFeature(feature);
-    }
+
     @DeleteMapping("/{id}")
-    public String deleteFeature(@PathVariable Long id){
+    public String deleteFeature(@PathVariable Long id) {
         featureService.deleteById(id);
-        return "data deleted";
+        return "data deleted successfully!";
     }
 
 }

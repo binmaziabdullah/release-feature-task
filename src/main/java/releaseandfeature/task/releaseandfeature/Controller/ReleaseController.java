@@ -15,19 +15,25 @@ public class ReleaseController {
     @Autowired
     private ReleaseService releaseService;
 
-    @GetMapping
-    public List<Release> getAllRelease(){
-        return releaseService.getAllReleases();
-    }
-    @GetMapping("/{id}")
-    public Optional<Release> getReleaseById(@PathVariable Long id){
-        return releaseService.getById(id);
-    }
-    @PostMapping
-    public String createRelease(@RequestBody Release release){
-        releaseService.createRelease(release);
-        return "Release Created";
+    @PostMapping()
+    public Release saveOrUpdate(@RequestBody Release release) {
+        return releaseService.saveOrUpdate(release);
     }
 
+    @GetMapping
+    public List<Release> getAllRelease() {
+        return releaseService.getAllReleases();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Release> getReleaseById(@PathVariable Long id) {
+        return releaseService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable Long id){
+        releaseService.deleteById(id);
+        return "Data deleted successfully!";
+    }
 
 }

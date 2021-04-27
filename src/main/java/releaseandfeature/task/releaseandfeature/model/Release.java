@@ -27,7 +27,7 @@ public class Release {
     @Enumerated(EnumType.STRING)
     private ReleaseStatus status;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "release_id", referencedColumnName = "id")
     private List<Feature> features;
 
