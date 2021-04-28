@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.Repository.ReleaseRepository;
-import releaseandfeature.task.releaseandfeature.model.IdNotFoundException;
+import releaseandfeature.task.releaseandfeature.custom_exception.IdNotFoundException;
 import releaseandfeature.task.releaseandfeature.model.Release;
 
 import java.util.List;
@@ -25,14 +25,13 @@ public class ReleaseService {
         return releaseRepository.save(release);
     }
 
-
     public List<Release> getAllReleases() {
         return releaseRepository.findAll();
     }
 
     public Optional<Release> getById(Long id) {
         releaseRepository.findById(id)
-                .orElseThrow( () -> new IdNotFoundException("given id not exist"));
+                .orElseThrow(() -> new IdNotFoundException("given id not exist"));
         return releaseRepository.findById(id);
     }
 

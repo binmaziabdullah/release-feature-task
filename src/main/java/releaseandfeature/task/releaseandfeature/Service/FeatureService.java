@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.Repository.FeatureRepository;
 import releaseandfeature.task.releaseandfeature.model.Feature;
-import releaseandfeature.task.releaseandfeature.model.IdNotFoundException;
+import releaseandfeature.task.releaseandfeature.custom_exception.IdNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class FeatureService {
     private FeatureRepository featureRepository;
 
     public Feature saveOrUpdate(Feature feature) {
-        if (feature.getId()!=null) {
+        if (feature.getId() != null) {
             featureRepository.findById(feature.getId())
                     .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
         }
@@ -36,8 +36,8 @@ public class FeatureService {
     }
 
     public void deleteById(Long id) {
-       featureRepository.findById(id)
-               .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
+        featureRepository.findById(id)
+                .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
         featureRepository.deleteById(id);
     }
 }

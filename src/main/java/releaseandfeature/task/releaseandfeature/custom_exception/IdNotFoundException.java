@@ -1,4 +1,4 @@
-package releaseandfeature.task.releaseandfeature.model;
+package releaseandfeature.task.releaseandfeature.custom_exception;
 
 public class  IdNotFoundException extends RuntimeException{
 

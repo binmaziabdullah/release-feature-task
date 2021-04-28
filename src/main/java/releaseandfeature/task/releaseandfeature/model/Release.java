@@ -1,6 +1,7 @@
 package releaseandfeature.task.releaseandfeature.model;
 
 import lombok.Data;
+import releaseandfeature.task.releaseandfeature.enum_release.ReleaseStatus;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,13 +19,12 @@ public class Release {
 
     @Temporal(TemporalType.DATE)
     private Date buildDate;
-    
+
     private String version;
 
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
-    @Enumerated(EnumType.STRING)
     private ReleaseStatus status;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -15,7 +15,7 @@ public class ReleaseController {
     @Autowired
     private ReleaseService releaseService;
 
-    @PostMapping()
+    @PostMapping
     public Release saveOrUpdate(@RequestBody Release release) {
         return releaseService.saveOrUpdate(release);
     }
@@ -31,7 +31,7 @@ public class ReleaseController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable Long id){
+    public String deleteById(@PathVariable Long id) {
         releaseService.deleteById(id);
         return "Data deleted successfully!";
     }
