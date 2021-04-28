@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.Repository.FeatureRepository;
 import releaseandfeature.task.releaseandfeature.model.Feature;
+import releaseandfeature.task.releaseandfeature.model.IdNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +18,9 @@ public class FeatureService {
     private FeatureRepository featureRepository;
 
     public Feature saveOrUpdate(Feature feature) {
-        Optional<Feature> optionalFeature = featureRepository.findById(feature.getId());
-        if (!optionalFeature.isPresent()) {
-            throw new RuntimeException("Can't update/save, id not found");
+        if (feature.getId()!=null) {
+            featureRepository.findById(feature.getId())
+                    .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
         }
         return featureRepository.save(feature);
     }
@@ -29,16 +30,14 @@ public class FeatureService {
     }
 
     public Optional<Feature> getById(Long id) {
-        Optional<Feature> optionalFeature = featureRepository.findById(id);
-        if (!optionalFeature.isPresent())
-            throw new RuntimeException("Id not exist");
-        return optionalFeature;
+        featureRepository.findById(id)
+                .orElseThrow(() -> new IdNotFoundException("Id not exist"));
+        return featureRepository.findById(id);
     }
 
     public void deleteById(Long id) {
-        Optional<Feature> optionalFeature = featureRepository.findById(id);
-        if (!optionalFeature.isPresent())
-            throw new RuntimeException("Can't delete Id not exist");
+       featureRepository.findById(id)
+               .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
         featureRepository.deleteById(id);
     }
 }

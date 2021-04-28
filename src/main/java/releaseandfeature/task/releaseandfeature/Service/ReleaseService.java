@@ -18,9 +18,10 @@ public class ReleaseService {
     private ReleaseRepository releaseRepository;
 
     public Release saveOrUpdate(Release release) {
-        releaseRepository.findById(release.getId())
-                .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
-
+        if (release.getId() != null) {
+            releaseRepository.findById(release.getId())
+                    .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
+        }
         return releaseRepository.save(release);
     }
 
@@ -30,10 +31,9 @@ public class ReleaseService {
     }
 
     public Optional<Release> getById(Long id) {
-        Optional<Release> optionalRelease = releaseRepository.findById(id);
-        optionalRelease.filter(release -> optionalRelease.isPresent())
+        releaseRepository.findById(id)
                 .orElseThrow( () -> new IdNotFoundException("given id not exist"));
-        return optionalRelease;
+        return releaseRepository.findById(id);
     }
 
     public void deleteById(Long id) {
