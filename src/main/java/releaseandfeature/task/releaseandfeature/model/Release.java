@@ -25,6 +25,7 @@ public class Release {
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
+    @Enumerated(EnumType.STRING)
     private ReleaseStatus status;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

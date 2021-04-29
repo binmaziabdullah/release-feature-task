@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.Repository.ReleaseRepository;
 import releaseandfeature.task.releaseandfeature.custom_exception.IdNotFoundException;
+import releaseandfeature.task.releaseandfeature.enum_release.ReleaseStatus;
 import releaseandfeature.task.releaseandfeature.model.Release;
 
 import java.util.List;
@@ -37,7 +38,11 @@ public class ReleaseService {
 
     public void deleteById(Long id) {
         releaseRepository.findById(id)
-                .orElseThrow(() -> new IdNotFoundException("Can't update, id not exist"));
+                .orElseThrow(() -> new IdNotFoundException("Can't delete, id not exist"));
         releaseRepository.deleteById(id);
+    }
+
+    public List<Release> getReleaseByStatus(ReleaseStatus status){
+        return releaseRepository.findByStatus(status);
     }
 }
