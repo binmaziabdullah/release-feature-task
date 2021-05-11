@@ -1,8 +1,11 @@
-package releaseandfeature.task.releaseandfeature.Controller;
+package releaseandfeature.task.releaseandfeature.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import releaseandfeature.task.releaseandfeature.Service.FeatureService;
+import releaseandfeature.task.releaseandfeature.model.Release;
+import releaseandfeature.task.releaseandfeature.service.FeatureService;
 import releaseandfeature.task.releaseandfeature.model.Feature;
 
 import java.util.List;
@@ -15,13 +18,15 @@ public class FeatureController {
     private FeatureService featureService;
 
     @GetMapping
-    public List<Feature> getAllFeature() {
-        return featureService.getAllFeatures();
+    public ResponseEntity<List<Feature>> getAllFeature() {
+        List<Feature> featureList = featureService.getAllFeatures();
+        return new ResponseEntity<>(featureList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<Feature> getFeatureById(@PathVariable Long id) {
-        return featureService.getById(id);
+    public ResponseEntity<Feature> getFeatureById(@PathVariable Long id) {
+        Feature feature = featureService.findById(id);
+        return new ResponseEntity<Feature>(feature,HttpStatus.OK);
     }
 
     @PostMapping

@@ -1,4 +1,4 @@
-package releaseandfeature.task.releaseandfeature.Repository;
+package releaseandfeature.task.releaseandfeature.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
