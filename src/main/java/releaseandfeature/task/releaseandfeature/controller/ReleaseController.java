@@ -21,13 +21,13 @@ public class ReleaseController {
     @PostMapping
     public ResponseEntity<Release> saveOrUpdate(@RequestBody Release release) {
         Release re =  releaseService.saveOrUpdate(release);
-        return new ResponseEntity<Release>(re,HttpStatus.OK);
+        return new ResponseEntity<>(re,HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<List<Release>> getAllRelease() {
         List<Release> releaseList = releaseService.getAllReleases();
-        return new ResponseEntity<List<Release>>(releaseList,HttpStatus.OK);
+        return new ResponseEntity<>(releaseList, HttpStatus.OK);
     }
 
     @GetMapping("/findEnums")
@@ -38,14 +38,14 @@ public class ReleaseController {
     @GetMapping("/{id}")
     public ResponseEntity<Release> getReleaseById(@PathVariable Long id) {
         Release release = releaseService.getById(id);
-        return new ResponseEntity<Release>(release, HttpStatus.OK);
+        return new ResponseEntity<>(release, HttpStatus.OK);
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Release> deleteById(@PathVariable Long id) {
         Release release = releaseService.deleteById(id);
-        return new ResponseEntity<Release>(release,HttpStatus.OK);
+        return new ResponseEntity<>(release, HttpStatus.OK);
     }
 
 }

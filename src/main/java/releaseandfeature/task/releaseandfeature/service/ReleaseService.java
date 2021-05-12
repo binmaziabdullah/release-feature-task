@@ -1,5 +1,6 @@
 package releaseandfeature.task.releaseandfeature.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.repository.ReleaseRepository;
@@ -12,12 +13,8 @@ import java.util.List;
 @Service
 @Transactional
 public class ReleaseService {
-
+    @Autowired
     private ReleaseRepository releaseRepository;
-
-    public ReleaseService(ReleaseRepository releaseRepository) {
-        this.releaseRepository = releaseRepository;
-    }
 
     public Release saveOrUpdate(Release release) {
         if (release.getId() != null) {
@@ -46,6 +43,6 @@ public class ReleaseService {
 
     private Release findEntityById(Long id){
         return releaseRepository.findById(id)
-                .orElseThrow(() -> new PropertyNotFoundException("Feature not found!"));
+                .orElseThrow(() -> new PropertyNotFoundException("Release not found!"));
     }
 }

@@ -33,7 +33,7 @@ public class FeatureService {
 
     public void deleteById(Long id) {
         Feature feature = findEntityById(id);
-        featureRepository.deleteById(id);
+        featureRepository.deleteById(feature.getId());
     }
 
     private Feature findEntityById(Long id){
