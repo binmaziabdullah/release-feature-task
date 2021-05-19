@@ -10,7 +10,7 @@ import releaseandfeature.task.releaseandfeature.model.Feature;
 import java.util.List;
 
 @RestController
-@RequestMapping("/feature")
+@RequestMapping("/features")
 public class FeatureController {
     @Autowired
     private FeatureService featureService;
