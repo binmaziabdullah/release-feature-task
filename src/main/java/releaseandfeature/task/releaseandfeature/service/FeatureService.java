@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.repository.FeatureRepository;
 import releaseandfeature.task.releaseandfeature.model.Feature;
-import releaseandfeature.task.releaseandfeature.custom_exception.PropertyNotFoundException;
+import releaseandfeature.task.releaseandfeature.exception.PropertyNotFoundException;
 
 import java.util.List;
 

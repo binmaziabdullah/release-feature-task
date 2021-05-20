@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import releaseandfeature.task.releaseandfeature.repository.ReleaseRepository;
-import releaseandfeature.task.releaseandfeature.custom_exception.PropertyNotFoundException;
+import releaseandfeature.task.releaseandfeature.exception.PropertyNotFoundException;
 import releaseandfeature.task.releaseandfeature.enum_release.ReleaseStatus;
 import releaseandfeature.task.releaseandfeature.model.Release;
 
